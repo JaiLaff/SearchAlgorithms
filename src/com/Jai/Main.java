@@ -7,5 +7,6 @@ public class Main {
     public static void main(String[] args) {
 	    Environment env = new Environment("input.txt");
 	    Agent agent = env.get_agent();
+	    env.PrintEnvironment();
     }
 }

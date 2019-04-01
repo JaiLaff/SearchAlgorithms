@@ -6,6 +6,7 @@ public class Environment {
 
     private SquareType[][] _grid;
     private Agent _agent;
+    private int _w,_h;
 
     public Environment(int w, int h) {
         Init(w,h);
@@ -53,10 +54,13 @@ public class Environment {
             e.printStackTrace();
         }
 
-        System.out.println(Arrays.deepToString(_grid));
+        //TODO: Do i need this?
+        //System.out.println(Arrays.deepToString(_grid));
     }
 
     private void Init(int w, int h){
+        _w = w;
+        _h = h;
         _grid = new SquareType[w][h];
 
         for (SquareType[] arrayOfYValues : _grid) {
@@ -87,6 +91,23 @@ public class Environment {
 
     public Agent get_agent(){
         return _agent;
+    }
+
+
+
+    public void PrintEnvironment(){
+        System.out.println("Environment Created:");
+
+        for (int y = 0; y < _h; y++){
+            System.out.print("[");
+
+            for (int x = 0; x < _w-1; x++){
+                System.out.print(_grid[x][y] + " ");
+            }
+
+            System.out.print(_grid[_w-1][y]);
+            System.out.print("]\n");
+        }
     }
 
 
