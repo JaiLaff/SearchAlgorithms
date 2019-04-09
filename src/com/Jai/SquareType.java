@@ -1,5 +1,5 @@
 package com.Jai;
 
 public enum SquareType {
-    BLANK,GOAL,WALL
+    BLNK,GOAL,WALL, AGNT, PATH
 }
