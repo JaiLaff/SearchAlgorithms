@@ -18,10 +18,8 @@ public class Node {
     }
 
     public ArrayList<Direction> get_path() {
-        Node parent = null;
+        Node parent = this;
         ArrayList<Direction> path = new ArrayList<>();
-
-        parent = this;
 
         while (parent!= null){
 

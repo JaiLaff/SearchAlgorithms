@@ -7,33 +7,49 @@ public class Agent {
 
     private int _initialX;
     private int _initialY;
-    // private SearchType _searchType;
+    private SearchType _searchType;
     private Node[][] _nodes;
     ArrayList<Direction> _solution;
 
-    public Agent(int x, int y){
+    public Agent(int x, int y, SearchType st){
         _initialX = x;
         _initialY = y;
-        //_searchType = searchType;
+        _searchType = st;
         _nodes = null;
         _solution = null;
     }
 
     public boolean Search() {
-        //TODO: Need a switch depending on search type
 
-        BreadthFirstSearch bfs = new BreadthFirstSearch(_nodes[_initialX][_initialY], _nodes);
+        Search search;
 
-        Node goal = bfs.BeginSearch();
+        switch(_searchType){
+            case DEPTH:
+                search = new DepthFirstSearch(_nodes[_initialX][_initialY], _nodes);
+                break;
+            case BREADTH:
+                search = new BreadthFirstSearch(_nodes[_initialX][_initialY], _nodes);
+                break;
+            default:
+                search = null;
+        }
 
-        if (goal != null) {
-            System.out.println(String.format("\nGoal found at: %d,%d!", goal.get_x(), goal.get_y()));
-            System.out.println("Path from origin: ");
-            _solution = goal.get_path();
-            System.out.println(_solution);
-            return true;
-        } else {
-            System.out.println("\nNo Solution Found");
+        try {
+            Node goal = search.BeginSearch();
+
+            if (goal != null) {
+                System.out.println(String.format("\nGoal found at: %d,%d in %d expansions", goal.get_x(), goal.get_y(), search._searchedNodes));
+                System.out.println("Path from origin: ");
+                _solution = goal.get_path();
+                System.out.println(_solution);
+                return true;
+            } else {
+                System.out.println("\nNo Solution Found");
+                return false;
+            }
+        } catch(Exception e){
+            System.out.println("Search Failed");
+            System.out.println("It is possible the search type does not currently exist");
             return false;
         }
     }

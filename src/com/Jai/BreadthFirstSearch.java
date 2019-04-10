@@ -12,41 +12,35 @@ public class BreadthFirstSearch extends Search {
     @Override
     public Node BeginSearch() {
 
-        Node current = null;
-        Node currentEdge = null;
-        Node[] currentEdges = null;
-
         while(!_frontier.isEmpty()) {
 
-            current = _frontier.pollFirst();
-            current.set_searched(true);
+            _current = _frontier.pollFirst();
 
-            if (current.get_squareType() == SquareType.GOAL) {
-                return current;
+            _searchedNodes++;
+
+            _current.set_searched(true);
+
+            if (_current.get_squareType() == SquareType.GOAL) {
+                return _current;
             }
 
-            currentEdges = current.get_edges();
+            _currentEdges = _current.get_edges();
 
             // Edges default to standard order
-            for (int i = 0; i < currentEdges.length ; i++) {
-                currentEdge = currentEdges[i];
+            for (int i = 0; i < _currentEdges.length ; i++) {
+                _currentEdge = _currentEdges[i];
 
-                if (currentEdge != null && !currentEdge.is_searched()) {
+                if (_currentEdge != null && !_currentEdge.is_searched()) {
 
-                    currentEdge.set_searched(true);
-                    currentEdge.set_parent(current);
-                    currentEdge.set_action(_defaultOrder[i]);
+                    _currentEdge.set_searched(true);
+                    _currentEdge.set_parent(_current);
+                    _currentEdge.set_action(_defaultOrder[i]);
 
-                    _frontier.add(currentEdge);
+                    _frontier.add(_currentEdge);
                 }
             }
         }
 
         return null;
-    }
-
-    @Override
-    public void addNextNodesToFrontier() {
-
     }
 }

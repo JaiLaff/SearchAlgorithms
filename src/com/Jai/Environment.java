@@ -9,7 +9,7 @@ public class Environment {
     private Agent _agent;
     private int _w,_h;
 
-    public Environment(String filename){
+    public Environment(String filename, SearchType st){
 
         // Constructor reads file - could probably put in another method
         try{
@@ -27,7 +27,7 @@ public class Environment {
                         Init(Integer.parseInt(vals[1]), Integer.parseInt(vals[0]));
                         break;
                     case 2:
-                        _agent = new Agent(Integer.parseInt(vals[0]), Integer.parseInt(vals[1]));
+                        _agent = new Agent(Integer.parseInt(vals[0]), Integer.parseInt(vals[1]),st);
                         break;
                     case 3:
                         String[] goals = newStr.split("[|]");
