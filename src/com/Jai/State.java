@@ -28,4 +28,12 @@ public class State {
     public int get_y() {
         return _y;
     }
+
+    public void set_pathCost(int _pathCost) {
+        this._pathCost = _pathCost;
+    }
+
+    public int get_pathCost() {
+        return _pathCost;
+    }
 }

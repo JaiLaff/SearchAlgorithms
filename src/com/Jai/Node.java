@@ -82,4 +82,12 @@ public class Node {
     public void set_action(Direction _action) {
         this._action = _action;
     }
+
+    public void set_pathCost(int pathCost) {
+        _state.set_pathCost(pathCost);
+    }
+
+    public int get_pathCost() {
+        return _state.get_pathCost();
+    }
 }

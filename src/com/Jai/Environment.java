@@ -1,13 +1,13 @@
 package com.Jai;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Environment {
 
     private Node[][] _grid;
     private Agent _agent;
     private int _w,_h;
+    private ArrayList<Node> _goals;
 
     public Environment(String filename, SearchType st){
 
@@ -39,6 +39,8 @@ public class Environment {
                             int gridY = Integer.parseInt(goalVals[1]);
 
                             _grid[gridX][gridY].set_squareType(SquareType.GOAL);
+                            _goals = new ArrayList<>();
+                            _goals.add(_grid[gridX][gridY]);
                         }
                         break;
                     default:
@@ -57,7 +59,7 @@ public class Environment {
 
             _grid[_agent.get_x()][_agent.get_y()].set_squareType(SquareType.AGNT);
 
-            addNodeEdges();
+            setUpNodes(st);
 
             _agent.set_nodes(_grid);
 
@@ -80,11 +82,17 @@ public class Environment {
 
     }
 
-    private void addNodeEdges() {
+    private void setUpNodes(SearchType st) {
         Node n;
         for (int x = 0; x < _grid.length; x ++) {
             for (int y = 0; y < _grid[x].length; y++) {
                 n = _grid[x][y];
+
+                //Only if using informed search
+                if(st == SearchType.GREEDY || st == SearchType.ASTAR) {
+                    n = setInitialHeuristic(n, st);
+                }
+
                 Node[] edges = {null,null,null,null};
 
                 // {UP,LEFT,DOWN,RIGHT}
@@ -96,6 +104,32 @@ public class Environment {
                 n.set_edges(edges);
             }
         }
+    }
+
+    private Node setInitialHeuristic(Node n, SearchType st) {
+
+        if (st == SearchType.GREEDY) {
+            n.set_pathCost(ManhattanDistance(n));
+        }
+
+        return n;
+    }
+
+    public int ManhattanDistance(Node n) {
+        int result = Integer.MAX_VALUE;
+        int x = n.get_x();
+        int y = n.get_y();
+
+
+        // Using manhattan distance to find distance to CLOSEST GOAL
+        for (Node goal : _goals){
+            int dist = ((Math.abs(x - goal.get_x())) + (Math.abs(y - goal.get_y())));
+            if (dist < result) {
+                result = dist;
+            }
+        }
+
+        return result;
     }
 
     private void AddWall(int x, int y, int w, int h){

@@ -24,22 +24,25 @@ public class DepthFirstSearch extends Search {
                 }
 
                 _currentEdges = _current.get_edges();
-
-                for (int i = _defaultOrder.length - 1; i >= 0; i--) {
-                    _currentEdge = _currentEdges[i];
-
-                    if (_currentEdge != null && !_currentEdge.is_searched()) {
-
-                        _currentEdge.set_parent(_current);
-                        _currentEdge.set_action(_defaultOrder[i]);
-
-                        _frontier.add(_currentEdge);
-                    }
-                }
+                addEdgesToFrontier(_currentEdges);
             }
 
         }
         return null;
+    }
+
+    public void addEdgesToFrontier(Node[] n) {
+        for (int i = _defaultOrder.length - 1; i >= 0; i--) {
+            _currentEdge = _currentEdges[i];
+
+            if (_currentEdge != null && !_currentEdge.is_searched()) {
+
+                _currentEdge.set_parent(_current);
+                _currentEdge.set_action(_defaultOrder[i]);
+
+                _frontier.add(_currentEdge);
+            }
+        }
     }
 
 }

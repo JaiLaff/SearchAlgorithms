@@ -1,6 +1,5 @@
 package com.Jai;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Agent {
@@ -29,6 +28,9 @@ public class Agent {
                 break;
             case BREADTH:
                 search = new BreadthFirstSearch(_nodes[_initialX][_initialY], _nodes);
+                break;
+            case GREEDY:
+                search = new GreedyBestFirstSearch(_nodes[_initialX][_initialY], _nodes);
                 break;
             default:
                 search = null;

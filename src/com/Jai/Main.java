@@ -18,6 +18,7 @@ public class Main {
 		switch (args[1]){
 			case "depth-first": st = SearchType.DEPTH; break;
 			case "breadth-first": st = SearchType.BREADTH; break;
+			case "greedy-best": st = SearchType.GREEDY; break;
 			default: st = null;
 		}
 
