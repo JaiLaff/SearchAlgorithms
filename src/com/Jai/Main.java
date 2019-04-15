@@ -2,10 +2,8 @@ package com.Jai;
 
 public class Main {
 
-    //TODO: Set up data structures for environment, wall, agent and goal.
 
     public static void main(String[] args) {
-    	//TODO: Take in search strategy argument
 
 		if(args.length < 2){
 			System.out.println("ERROR: incorrect number of arguments");
@@ -27,7 +25,7 @@ public class Main {
 			System.out.println("Available Search Types:");
 			System.out.println("\tdepth-first");
 			System.out.println("\tbreadth-first");
-			System.out.println("\tgreedy-best-first");
+			System.out.println("\tgreedy-best");
 			System.out.println("\ta-star");
 			return;
 		}
