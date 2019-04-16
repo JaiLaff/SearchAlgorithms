@@ -10,29 +10,6 @@ public class BreadthFirstSearch extends Search {
     }
 
     @Override
-    public Node BeginSearch() {
-
-        while(!_frontier.isEmpty()) {
-
-            _current = _frontier.pollFirst();
-
-            _searchedNodes++;
-
-            _current.set_searched(true);
-
-            if (_current.get_squareType() == SquareType.GOAL) {
-                return _current;
-            }
-
-            _currentEdges = _current.get_edges();
-            addEdgesToFrontier(_currentEdges);
-
-        }
-
-        return null;
-    }
-
-    @Override
     public void addEdgesToFrontier(Node[] edges) {
         // Edges default to standard order
         for (int i = 0; i < _currentEdges.length ; i++) {

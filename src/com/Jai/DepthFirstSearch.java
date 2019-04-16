@@ -6,31 +6,6 @@ public class DepthFirstSearch extends Search {
         super(root, nodes);
     }
 
-
-    @Override
-    public Node BeginSearch() {
-
-        while(!_frontier.isEmpty()) {
-
-            _current = _frontier.pollLast();
-
-            if (!_current.is_searched()) {
-                _current.set_searched(true);
-
-                _searchedNodes++;
-
-                if (_current.get_squareType() == SquareType.GOAL) {
-                    return _current;
-                }
-
-                _currentEdges = _current.get_edges();
-                addEdgesToFrontier(_currentEdges);
-            }
-
-        }
-        return null;
-    }
-
     public void addEdgesToFrontier(Node[] n) {
         for (int i = _defaultOrder.length - 1; i >= 0; i--) {
             _currentEdge = _currentEdges[i];

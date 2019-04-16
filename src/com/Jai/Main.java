@@ -17,6 +17,7 @@ public class Main {
 			case "depth-first": st = SearchType.DEPTH; break;
 			case "breadth-first": st = SearchType.BREADTH; break;
 			case "greedy-best": st = SearchType.GREEDY; break;
+			case "a-star": st = SearchType.ASTAR; break;
 			default: st = null;
 		}
 

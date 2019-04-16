@@ -32,6 +32,9 @@ public class Agent {
             case GREEDY:
                 search = new GreedyBestFirstSearch(_nodes[_initialX][_initialY], _nodes);
                 break;
+            case ASTAR:
+                search = new AStarSearch(_nodes[_initialX][_initialY], _nodes);
+                break;
             default:
                 search = null;
         }

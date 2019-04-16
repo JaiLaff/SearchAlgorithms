@@ -107,10 +107,7 @@ public class Environment {
     }
 
     private Node setInitialHeuristic(Node n, SearchType st) {
-
-        if (st == SearchType.GREEDY) {
-            n.set_pathCost(ManhattanDistance(n));
-        }
+        n.set_pathCost(ManhattanDistance(n));
 
         return n;
     }

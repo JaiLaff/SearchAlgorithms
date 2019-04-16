@@ -23,7 +23,24 @@ public abstract class Search {
     }
 
 
-    public abstract Node BeginSearch();
+    public Node BeginSearch() {
+
+        while(!_frontier.isEmpty()){
+            _current = _frontier.pollFirst();
+            _current.set_searched(true);
+
+            _searchedNodes++;
+
+            if (_current.get_squareType() == SquareType.GOAL) {
+                return _current;
+            }
+
+            _currentEdges = _current.get_edges();
+            addEdgesToFrontier(_currentEdges);
+        }
+
+        return null;
+    }
 
     public abstract void addEdgesToFrontier(Node[] edges);
 

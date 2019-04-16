@@ -1,12 +1,23 @@
 package com.Jai;
 
-public class GreedyBestFirstSearch extends Search {
+public class AStarSearch extends Search {
 
 
-    public GreedyBestFirstSearch(Node root, Node[][] nodes) {
+    public AStarSearch(Node root, Node[][] nodes) {
         super(root, nodes);
     }
 
+    public int pathScore(Node n) {
+        Node node = n;
+        int result  = 0;
+
+        while (node != null) {
+            result += node.get_pathCost();
+            node = node.get_parent();
+        }
+
+        return result;
+    }
 
     public void insertNodeToFrontier(Node n) {
 
@@ -35,9 +46,12 @@ public class GreedyBestFirstSearch extends Search {
         for (int i = 0; i < edges.length; i++) {
 
             _currentEdge = edges[i];
+
+
             if (_currentEdge != null && !_currentEdge.is_searched()) {
                 _currentEdge.set_parent(_current);
                 _currentEdge.set_action(_defaultOrder[i]);
+                _currentEdge.set_pathCost(pathScore(_currentEdge));
 
                 insertNodeToFrontier(_currentEdge);
 
