@@ -11,8 +11,9 @@ public abstract class Search {
     protected Node _current;
     protected Node _currentEdge;
     protected Node[] _currentEdges;
+    private Agent _agent;
 
-    public Search(Node root, Node[][] nodes) {
+    public Search(Node root, Node[][] nodes, Agent agent) {
         _frontier = new LinkedList();
         _frontier.add(root);
         _nodes = nodes;
@@ -20,7 +21,13 @@ public abstract class Search {
         _current = null;
         _currentEdge = null;
         _currentEdges = null;
+        _agent = agent;
     }
+
+    public void updateUI() {
+        _agent.updateUI(_nodes);
+    }
+
 
 
     public Node BeginSearch() {
@@ -28,6 +35,8 @@ public abstract class Search {
         while(!_frontier.isEmpty()){
             _current = _frontier.pollFirst();
             _current.set_searched(true);
+            _current.set_frontier(false);
+            _current.set_isCurrent(true);
 
             _searchedNodes++;
 
@@ -37,9 +46,21 @@ public abstract class Search {
 
             _currentEdges = _current.get_edges();
             addEdgesToFrontier(_currentEdges);
+
+            updateFrontier();
+
+            updateUI();
+
+            _current.set_isCurrent(false);
         }
 
         return null;
+    }
+
+    public void updateFrontier(){
+        for (Node n : _frontier) {
+           n.set_frontier(true);
+        }
     }
 
     public abstract void addEdgesToFrontier(Node[] edges);

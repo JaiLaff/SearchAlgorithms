@@ -37,6 +37,7 @@ public class Main {
 
 	    if (agent.Search()) {
 	    	env.AddPath();
+	    	env.vc.update(env.get_nodes());
 	    	env.PrintEnvironment();
 		}
     }

@@ -3,8 +3,8 @@ package com.Jai;
 public class GreedyBestFirstSearch extends Search {
 
 
-    public GreedyBestFirstSearch(Node root, Node[][] nodes) {
-        super(root, nodes);
+    public GreedyBestFirstSearch(Node root, Node[][] nodes, Agent agent) {
+        super(root, nodes, agent );
     }
 
 

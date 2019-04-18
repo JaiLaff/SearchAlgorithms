@@ -1,5 +1,6 @@
 package com.Jai;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Agent {
@@ -9,6 +10,7 @@ public class Agent {
     private SearchType _searchType;
     private Node[][] _nodes;
     ArrayList<Direction> _solution;
+    ViewController viewController;
 
     public Agent(int x, int y, SearchType st){
         _initialX = x;
@@ -24,16 +26,16 @@ public class Agent {
 
         switch(_searchType){
             case DEPTH:
-                search = new DepthFirstSearch(_nodes[_initialX][_initialY], _nodes);
+                search = new DepthFirstSearch(_nodes[_initialX][_initialY], _nodes, this);
                 break;
             case BREADTH:
-                search = new BreadthFirstSearch(_nodes[_initialX][_initialY], _nodes);
+                search = new BreadthFirstSearch(_nodes[_initialX][_initialY], _nodes, this);
                 break;
             case GREEDY:
-                search = new GreedyBestFirstSearch(_nodes[_initialX][_initialY], _nodes);
+                search = new GreedyBestFirstSearch(_nodes[_initialX][_initialY], _nodes, this);
                 break;
             case ASTAR:
-                search = new AStarSearch(_nodes[_initialX][_initialY], _nodes);
+                search = new AStarSearch(_nodes[_initialX][_initialY], _nodes, this);
                 break;
             default:
                 search = null;
@@ -57,6 +59,14 @@ public class Agent {
             System.out.println("It is possible the search type does not currently exist");
             return false;
         }
+    }
+
+    public void updateUI(Node[][] nodes) {
+        viewController.update(nodes);
+    }
+
+    public void set_ViewController(ViewController v) {
+        this.viewController = v;
     }
 
     public int get_x() {

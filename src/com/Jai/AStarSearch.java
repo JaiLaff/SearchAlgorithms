@@ -3,8 +3,8 @@ package com.Jai;
 public class AStarSearch extends Search {
 
 
-    public AStarSearch(Node root, Node[][] nodes) {
-        super(root, nodes);
+    public AStarSearch(Node root, Node[][] nodes, Agent agent) {
+        super(root, nodes, agent);
     }
 
     public int pathScore(Node n) {

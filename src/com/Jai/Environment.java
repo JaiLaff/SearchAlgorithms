@@ -8,6 +8,7 @@ public class Environment {
     private Agent _agent;
     private int _w,_h;
     private ArrayList<Node> _goals;
+    public ViewController vc;
 
     public Environment(String filename, SearchType st){
 
@@ -62,6 +63,20 @@ public class Environment {
             setUpNodes(st);
 
             _agent.set_nodes(_grid);
+
+            int sqLen = 50;
+
+            if(_grid.length >= 20)
+            {
+                sqLen = 40;
+            } else if (_grid.length >= 40)
+            {
+                sqLen = 20;
+            }
+
+            vc = new ViewController(sqLen,_grid);
+
+            _agent.set_ViewController(vc);
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -190,6 +205,10 @@ public class Environment {
         }
 
         _grid[x][y].set_squareType(SquareType.GOAL);
+    }
+
+    public Node[][] get_nodes() {
+        return _grid;
     }
 
 

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class BreadthFirstSearch extends Search {
 
 
-    public BreadthFirstSearch(Node root, Node[][] nodes) {
-        super(root, nodes);
+    public BreadthFirstSearch(Node root, Node[][] nodes, Agent agent) {
+        super(root, nodes, agent);
     }
 
     @Override

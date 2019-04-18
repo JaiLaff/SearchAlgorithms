@@ -2,8 +2,8 @@ package com.Jai;
 
 public class DepthFirstSearch extends Search {
 
-    public DepthFirstSearch(Node root, Node[][]nodes) {
-        super(root, nodes);
+    public DepthFirstSearch(Node root, Node[][]nodes, Agent agent) {
+        super(root, nodes, agent);
     }
 
     public void addEdgesToFrontier(Node[] n) {
@@ -15,7 +15,7 @@ public class DepthFirstSearch extends Search {
                 _currentEdge.set_parent(_current);
                 _currentEdge.set_action(_defaultOrder[i]);
 
-                _frontier.add(_currentEdge);
+                _frontier.addFirst(_currentEdge);
             }
         }
     }

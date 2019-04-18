@@ -10,6 +10,8 @@ public class Node {
     private Direction _action;
     private Node[] _edges;
     private boolean _searched;
+    private boolean _isFrontier;
+    private boolean _isCurrent;
 
     public Node(State state) {
         _state = state;
@@ -63,6 +65,14 @@ public class Node {
         return _searched;
     }
 
+    public boolean is_frontier() {
+        return _isFrontier;
+    }
+
+    public void set_frontier(boolean frontier) {
+        _isFrontier = frontier;
+    }
+
     public void set_searched(boolean _searched) {
         this._searched = _searched;
     }
@@ -89,5 +99,13 @@ public class Node {
 
     public int get_pathCost() {
         return _state.get_pathCost();
+    }
+
+    public boolean is_isCurrent() {
+        return _isCurrent;
+    }
+
+    public void set_isCurrent(boolean _isCurrent) {
+        this._isCurrent = _isCurrent;
     }
 }
