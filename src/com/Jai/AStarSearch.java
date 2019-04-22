@@ -8,20 +8,19 @@ public class AStarSearch extends Search {
     }
 
     public int pathScore(Node n) {
-        Node node = n;
-        int result  = 0;
+        int result;
 
-        while (node != null) {
-            result += node.get_pathCost();
-            node = node.get_parent();
-        }
+        n.set_pathCost(n.get_pathCost() + n.get_pathScore());
+
+        result = n.get_pathCost();
+
 
         return result;
     }
 
     public void insertNodeToFrontier(Node n) {
 
-        for( int i = 0; i < _frontier.size(); i++) {
+        for( int i = 0; i < _frontier.size() -1; i++) {
 
             if (n.get_pathCost() < _frontier.get(i).get_pathCost()) {
                 _frontier.add(i, n);
@@ -29,13 +28,18 @@ public class AStarSearch extends Search {
             }
 
             if (n.get_pathCost() == _frontier.get(i).get_pathCost()) {
-                if (n.get_action().ordinal() < _frontier.get(i).get_action().ordinal()) {
-                    _frontier.add(i, n);
-                    return;
-                } else {
-                    _frontier.add(i + 1, n);
-                    return;
-                }
+                int j = i;
+
+                do {
+                    if (n.get_pathCost() < _frontier.get(j+1).get_pathCost()) {
+                        _frontier.add(j+1, n);
+                        return;
+                    }
+
+                    j++;
+
+                }while (j < _frontier.size() -1);
+
             }
         }
 
@@ -52,6 +56,7 @@ public class AStarSearch extends Search {
                 _currentEdge.set_parent(_current);
                 _currentEdge.set_action(_defaultOrder[i]);
                 _currentEdge.set_pathCost(pathScore(_currentEdge));
+                _currentEdge.incrementPathScore();
 
                 insertNodeToFrontier(_currentEdge);
 

@@ -12,11 +12,13 @@ public class Node {
     private boolean _searched;
     private boolean _isFrontier;
     private boolean _isCurrent;
+    private int _pathScore;
 
     public Node(State state) {
         _state = state;
         _parent = null;
         _action = Direction.NONE;
+        _pathScore = 0;
     }
 
     public ArrayList<Direction> get_path() {
@@ -35,6 +37,30 @@ public class Node {
 
         Collections.reverse(path);
         return path;
+    }
+
+    public int ManhattanDistanceToNode(Node n) {
+        int result = Integer.MAX_VALUE;
+        int x = this.get_x();
+        int y = this.get_y();
+
+        result = ((Math.abs(x - n.get_x())) + (Math.abs(y - n.get_y())));
+
+        return result;
+    }
+
+    public int ManhattanDistanceToNearestGoal(ArrayList<Node> goals) {
+        int result = Integer.MAX_VALUE;
+
+        // Using manhattan distance to find distance to CLOSEST GOAL
+        for (Node goal : goals){
+            int dist = ManhattanDistanceToNode(goal);
+            if (dist < result) {
+                result = dist;
+            }
+        }
+
+        return result;
     }
 
     public void set_edges(Node[] edges) {
@@ -97,9 +123,15 @@ public class Node {
         _state.set_pathCost(pathCost);
     }
 
+    public void set_pathCost( ArrayList<Node> goals) {set_pathCost(ManhattanDistanceToNearestGoal(goals));}
+
     public int get_pathCost() {
         return _state.get_pathCost();
     }
+
+    public int get_pathScore() { return _pathScore;}
+
+    public void incrementPathScore() {_pathScore++;}
 
     public boolean is_isCurrent() {
         return _isCurrent;

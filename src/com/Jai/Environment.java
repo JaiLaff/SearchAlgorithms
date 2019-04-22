@@ -74,7 +74,7 @@ public class Environment {
                 sqLen = 20;
             }
 
-            vc = new ViewController(sqLen,_grid);
+            vc = new ViewController(sqLen,_grid, st);
 
             _agent.set_ViewController(vc);
 
@@ -122,26 +122,9 @@ public class Environment {
     }
 
     private Node setInitialHeuristic(Node n, SearchType st) {
-        n.set_pathCost(ManhattanDistance(n));
+        n.set_pathCost(_goals);
 
         return n;
-    }
-
-    public int ManhattanDistance(Node n) {
-        int result = Integer.MAX_VALUE;
-        int x = n.get_x();
-        int y = n.get_y();
-
-
-        // Using manhattan distance to find distance to CLOSEST GOAL
-        for (Node goal : _goals){
-            int dist = ((Math.abs(x - goal.get_x())) + (Math.abs(y - goal.get_y())));
-            if (dist < result) {
-                result = dist;
-            }
-        }
-
-        return result;
     }
 
     private void AddWall(int x, int y, int w, int h){

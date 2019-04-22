@@ -10,13 +10,13 @@ public class ViewController{
     private int height;
     private int squareLength;
 
-    public ViewController(int squareLength, Node[][] nodes){
+    public ViewController(int squareLength, Node[][] nodes, SearchType st){
 
         this.width = (squareLength * nodes.length);
         this.height = (squareLength * nodes[0].length) + squareLength/2; //Height bug
         this.squareLength = squareLength;
 
-        f = new JFrame("Search Algorithms");
+        f = new JFrame("Search Algorithms - " + st.get_longSearchType());
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setSize(this.width, this.height);
         f.setResizable(false);

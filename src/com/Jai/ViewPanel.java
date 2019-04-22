@@ -25,8 +25,13 @@ public class ViewPanel extends JPanel {
                 g.setColor(getColour(nodes[x/squareLength][y/squareLength]));
                 g.fillRect(x, y, squareLength, squareLength);
 
+
                 g.setColor(Color.BLACK);
                 g.drawRect(x,y,squareLength,squareLength);
+
+                Font myFont = new Font ("Helvetica", 1, 10);
+                g.setFont(myFont);
+                g.drawString(String.valueOf(nodes[x/squareLength][y/squareLength].get_pathCost()), x+ (squareLength /4), y + (squareLength/2));
             }
         }
     }

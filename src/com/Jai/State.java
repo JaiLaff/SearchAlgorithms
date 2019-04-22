@@ -7,7 +7,6 @@ public class State {
     private int _pathCost;
 
     public State(int x, int y, SquareType st) {
-        //TODO pathcost
         _x = x;
         _y = y;
         _squareType = st;
