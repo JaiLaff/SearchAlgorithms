@@ -9,55 +9,66 @@ public class Agent {
     private int _initialY;
     private SearchType _searchType;
     private Node[][] _nodes;
-    ArrayList<Direction> _solution;
     ViewController viewController;
+    private int[] _stepcosts;
 
-    public Agent(int x, int y, SearchType st){
+    public Agent(int x, int y, SearchType st, int[] stepcosts){
         _initialX = x;
         _initialY = y;
         _searchType = st;
         _nodes = null;
-        _solution = null;
+        _stepcosts = stepcosts;
     }
 
-    public boolean Search() {
+    public Agent(int x, int y, SearchType st) {
+        this(x,y, st, new int[]{1,1,1,1});
+    }
+
+    public Solution Search(int sleepTime) {
 
         Search search;
 
         switch(_searchType){
             case DEPTH:
-                search = new DepthFirstSearch(_nodes[_initialX][_initialY], _nodes, this);
+                search = new DepthFirstSearch(_nodes[_initialX][_initialY], _nodes, this, _stepcosts);
                 break;
             case BREADTH:
-                search = new BreadthFirstSearch(_nodes[_initialX][_initialY], _nodes, this);
+                search = new BreadthFirstSearch(_nodes[_initialX][_initialY], _nodes, this, _stepcosts);
                 break;
             case GREEDY:
-                search = new GreedyBestFirstSearch(_nodes[_initialX][_initialY], _nodes, this);
+                search = new GreedyBestFirstSearch(_nodes[_initialX][_initialY], _nodes, this, _stepcosts);
                 break;
             case ASTAR:
-                search = new AStarSearch(_nodes[_initialX][_initialY], _nodes, this);
+                search = new AStarSearch(_nodes[_initialX][_initialY], _nodes, this, _stepcosts);
+                break;
+            case UCS:
+                search = new UniformCostSearch(_nodes[_initialX][_initialY], _nodes, this, _stepcosts);
                 break;
             default:
                 search = null;
         }
 
+        Solution soln = new Solution(false);
+
         try {
-            Node goal = search.BeginSearch();
+
+            long startTime = System.nanoTime();
+
+            Node goal = search.BeginSearch(sleepTime);
+
+            long endTime = System.nanoTime();
+            long elapsedTime = endTime - startTime;
+
 
             if (goal != null) {
-                System.out.println(String.format("\nGoal found at: %d,%d in %d expansions", goal.get_x(), goal.get_y(), search._searchedNodes));
-                System.out.println("Path from origin: ");
-                _solution = goal.get_path();
-                System.out.println(_solution);
-                return true;
+
+                return new Solution(goal, goal.get_path(), elapsedTime, search._searchedNodes, true);
             } else {
-                System.out.println("\nNo Solution Found");
-                return false;
+                soln.error = true;
+                return soln;
             }
         } catch(Exception e){
-            System.out.println("Search Failed");
-            System.out.println("It is possible the search type does not currently exist");
-            return false;
+            return soln;
         }
     }
 
@@ -79,10 +90,6 @@ public class Agent {
 
     public void set_nodes(Node[][] nodes){
         _nodes = nodes;
-    }
-
-    public ArrayList<Direction> get_solution() {
-        return _solution;
     }
 
 }

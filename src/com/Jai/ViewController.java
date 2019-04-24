@@ -21,7 +21,7 @@ public class ViewController{
         f.setSize(this.width, this.height);
         f.setResizable(false);
 
-        p = new ViewPanel(nodes, this.width, this.height, this.squareLength);
+        p = new ViewPanel(nodes, this.squareLength);
         f.add(p);
 
         f.setVisible(true);
@@ -29,7 +29,7 @@ public class ViewController{
 
     public void update(Node[][] nodes) {
         f.remove(p);
-        p = new ViewPanel(nodes, this.width, this.height, this.squareLength);
+        p = new ViewPanel(nodes, this.squareLength);
         f.add(p);
         f.validate();
     }

@@ -131,7 +131,9 @@ public class Node {
 
     public int get_pathScore() { return _pathScore;}
 
-    public void incrementPathScore() {_pathScore++;}
+    public void set_PathScore(int[] stepcosts, int i) {_pathScore = stepcosts[i];}
+
+    public void incrementPathScore(int[] stepcosts, int i) {_pathScore += stepcosts[i];}
 
     public boolean is_isCurrent() {
         return _isCurrent;
@@ -139,5 +141,14 @@ public class Node {
 
     public void set_isCurrent(boolean _isCurrent) {
         this._isCurrent = _isCurrent;
+    }
+
+    public int get_totalPathScore() {
+        int result;
+
+        result = get_pathCost() + get_pathScore();
+
+
+        return result;
     }
 }

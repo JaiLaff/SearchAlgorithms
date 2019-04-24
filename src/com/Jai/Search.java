@@ -12,8 +12,9 @@ public abstract class Search {
     protected Node _currentEdge;
     protected Node[] _currentEdges;
     private Agent _agent;
+    protected int[] _stepCosts;
 
-    public Search(Node root, Node[][] nodes, Agent agent) {
+    public Search(Node root, Node[][] nodes, Agent agent, int[] stepCosts) {
         _frontier = new LinkedList();
         _frontier.add(root);
         _nodes = nodes;
@@ -22,6 +23,7 @@ public abstract class Search {
         _currentEdge = null;
         _currentEdges = null;
         _agent = agent;
+        _stepCosts = stepCosts;
     }
 
     public void updateUI() {
@@ -30,7 +32,7 @@ public abstract class Search {
 
 
 
-    public Node BeginSearch() {
+    public Node BeginSearch(int sleepTime) {
 
         while(!_frontier.isEmpty()){
             _current = _frontier.pollFirst();
@@ -49,9 +51,16 @@ public abstract class Search {
 
             updateFrontier();
 
-            updateUI();
+            try {
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             _current.set_isCurrent(false);
+
+            updateUI();
+
         }
 
         return null;

@@ -9,6 +9,8 @@ public class Environment {
     private int _w,_h;
     private ArrayList<Node> _goals;
     public ViewController vc;
+    private int _initialX;
+    private int _initialY;
 
     public Environment(String filename, SearchType st){
 
@@ -28,9 +30,17 @@ public class Environment {
                         Init(Integer.parseInt(vals[1]), Integer.parseInt(vals[0]));
                         break;
                     case 2:
-                        _agent = new Agent(Integer.parseInt(vals[0]), Integer.parseInt(vals[1]),st);
+                        _initialX = Integer.parseInt(vals[0]);
+                        _initialY = Integer.parseInt(vals[1]);
                         break;
                     case 3:
+                        int[] stepCostArr = new int[4];
+                        for (int i = 0; i < vals.length; i++) {
+                            stepCostArr[i] = Integer.parseInt(vals[i]);
+                        }
+                        _agent = new Agent(_initialX, _initialY,st, stepCostArr);
+                        break;
+                    case 4:
                         String[] goals = newStr.split("[|]");
 
                         for (int i = 0; i < goals.length; i++){
@@ -143,27 +153,11 @@ public class Environment {
     }
 
 
-
-    public void PrintEnvironment(){
-        System.out.println("\nCurrent Environment:");
-
-        for (int y = 0; y < _h; y++){
-            System.out.print("[");
-
-            for (int x = 0; x < _w-1; x++){
-                System.out.print(_grid[x][y].get_squareType() + " ");
-            }
-
-            System.out.print(_grid[_w-1][y].get_squareType());
-            System.out.print("]\n");
-        }
-    }
-
-    public void AddPath() {
+    public void AddPath(Solution soln) {
         int x = _agent.get_x();
         int y = _agent.get_y();
 
-        for (Direction d : _agent.get_solution()) {
+        for (Direction d : soln.path) {
             switch (d) {
                 case RIGHT:
                     x++;

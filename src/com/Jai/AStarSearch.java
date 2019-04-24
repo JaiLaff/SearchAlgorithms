@@ -3,43 +3,36 @@ package com.Jai;
 public class AStarSearch extends Search {
 
 
-    public AStarSearch(Node root, Node[][] nodes, Agent agent) {
-        super(root, nodes, agent);
-    }
-
-    public int pathScore(Node n) {
-        int result;
-
-        n.set_pathCost(n.get_pathCost() + n.get_pathScore());
-
-        result = n.get_pathCost();
-
-
-        return result;
+    public AStarSearch(Node root, Node[][] nodes, Agent agent, int[] stepCosts) {
+        super(root, nodes, agent,stepCosts);
     }
 
     public void insertNodeToFrontier(Node n) {
 
         for( int i = 0; i < _frontier.size() -1; i++) {
 
-            if (n.get_pathCost() < _frontier.get(i).get_pathCost()) {
+
+
+            if (n.get_totalPathScore() < _frontier.get(i).get_totalPathScore()) {
                 _frontier.add(i, n);
                 return;
             }
 
-            if (n.get_pathCost() == _frontier.get(i).get_pathCost()) {
+            if (n.get_totalPathScore() == _frontier.get(i).get_totalPathScore()) {
                 int j = i;
 
                 do {
-                    if (n.get_pathCost() < _frontier.get(j+1).get_pathCost()) {
+                    if (n.get_action().ordinal() < _frontier.get(j+1).get_action().ordinal()) {
                         _frontier.add(j+1, n);
                         return;
                     }
 
                     j++;
 
-                }while (j < _frontier.size() -1);
+                }while (n.get_totalPathScore() == _frontier.get(j).get_totalPathScore() && j <= _frontier.size());
 
+                _frontier.add(n);
+                return;
             }
         }
 
@@ -54,9 +47,10 @@ public class AStarSearch extends Search {
 
             if (_currentEdge != null && !_currentEdge.is_searched()) {
                 _currentEdge.set_parent(_current);
+
                 _currentEdge.set_action(_defaultOrder[i]);
-                _currentEdge.set_pathCost(pathScore(_currentEdge));
-                _currentEdge.incrementPathScore();
+                //Gives direction (i) in order to figure out step costs;
+                _currentEdge.incrementPathScore(_stepCosts, i);
 
                 insertNodeToFrontier(_currentEdge);
 

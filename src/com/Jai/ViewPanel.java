@@ -7,14 +7,10 @@ import java.util.ArrayList;
 public class ViewPanel extends JPanel {
 
     private Node[][] nodes;
-    private int width;
-    private int height;
     private int squareLength;
 
-    public ViewPanel(Node[][] nodes, int width, int height, int squareLength) {
+    public ViewPanel(Node[][] nodes, int squareLength) {
         this.nodes = nodes;
-        this.width = width;
-        this.height = height;
         this.squareLength = squareLength;
     }
 
@@ -31,12 +27,22 @@ public class ViewPanel extends JPanel {
 
                 Font myFont = new Font ("Helvetica", 1, 10);
                 g.setFont(myFont);
-                g.drawString(String.valueOf(nodes[x/squareLength][y/squareLength].get_pathCost()), x+ (squareLength /4), y + (squareLength/2));
+
+                int pathCost = nodes[x/squareLength][y/squareLength].get_pathCost();
+                int pathScore = nodes[x/squareLength][y/squareLength].get_pathScore();
+
+                if (pathCost != 0) {  g.drawString(String.valueOf(pathCost), x+ (squareLength /4), y + (squareLength/3));}
+
+                if (pathScore != 0) { g.drawString(String.valueOf(pathScore), x+ ((squareLength /4)*2), y + ((squareLength/3)*2));}
+
+
             }
         }
     }
 
     private Color getColour(Node n) {
+
+        // Priority of colouring, some nodes can return positive for multiple statements
         Color result = Color.WHITE;
 
         if (n.get_squareType() == SquareType.WALL) {
@@ -48,7 +54,7 @@ public class ViewPanel extends JPanel {
         }
 
         if (n.is_frontier()) {
-            result = Color.BLUE;
+            result = Color.CYAN;
         }
 
         if(n.is_isCurrent()) {

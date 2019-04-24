@@ -3,8 +3,8 @@ package com.Jai;
 public class BreadthFirstSearch extends Search {
 
 
-    public BreadthFirstSearch(Node root, Node[][] nodes, Agent agent) {
-        super(root, nodes, agent);
+    public BreadthFirstSearch(Node root, Node[][] nodes, Agent agent, int[] stepcosts) {
+        super(root, nodes, agent, stepcosts);
     }
 
     @Override
