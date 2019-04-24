@@ -22,14 +22,14 @@ public class Node {
     }
 
     public ArrayList<Direction> get_path() {
-        Node parent = this;
+        Node n = this;
         ArrayList<Direction> path = new ArrayList<>();
 
-        while (parent!= null){
+        while (n != null){
 
-            path.add(parent._action);
+            path.add(n._action);
 
-            parent = parent.get_parent();
+            n = n.get_parent();
 
         }
 
@@ -132,6 +132,8 @@ public class Node {
     public int get_pathScore() { return _pathScore;}
 
     public void set_PathScore(int[] stepcosts, int i) {_pathScore = stepcosts[i];}
+
+    public void set_PathScore(int pathScore) {_pathScore = pathScore;}
 
     public void incrementPathScore(int[] stepcosts, int i) {_pathScore += stepcosts[i];}
 

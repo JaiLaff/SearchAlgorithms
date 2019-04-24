@@ -44,6 +44,9 @@ public class Agent {
             case UCS:
                 search = new UniformCostSearch(_nodes[_initialX][_initialY], _nodes, this, _stepcosts);
                 break;
+            case IDA:
+                search = new IterativeDeepeningAStarSearch(_nodes[_initialX][_initialY], _nodes, this, _stepcosts);
+                break;
             default:
                 search = null;
         }
@@ -68,6 +71,7 @@ public class Agent {
                 return soln;
             }
         } catch(Exception e){
+            soln.error = true;
             return soln;
         }
     }

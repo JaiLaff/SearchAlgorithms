@@ -31,6 +31,9 @@ public class Main {
             case "uniform-cost":
                 st = SearchType.UCS;
                 break;
+            case "id-a-star":
+                st = SearchType.IDA;
+                break;
             default:
                 st = null;
         }
@@ -43,6 +46,8 @@ public class Main {
             System.out.println("\tgreedy-best");
             System.out.println("\ta-star");
             System.out.println("\tuniform-cost");
+            System.out.println("\tid-a-star");
+
             return;
         }
 

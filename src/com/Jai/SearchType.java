@@ -1,7 +1,7 @@
 package com.Jai;
 
 public enum SearchType {
-    DEPTH,BREADTH,GREEDY,ASTAR, UCS;
+    DEPTH,BREADTH,GREEDY,ASTAR, UCS, IDA;
 
     public String get_longSearchType() {
         switch (this) {
@@ -10,6 +10,7 @@ public enum SearchType {
             case GREEDY: return "Greedy-Best-First-Search";
             case ASTAR: return "A-Star";
             case UCS: return "Uniform-Cost-Search";
+            case IDA: return "Iterative-Deepening-A-Star";
             default: return "error";
         }
     }

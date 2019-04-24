@@ -114,7 +114,7 @@ public class Environment {
                 n = _grid[x][y];
 
                 //Only if using informed search
-                if(st == SearchType.GREEDY || st == SearchType.ASTAR) {
+                if(st == SearchType.GREEDY || st == SearchType.ASTAR || st == SearchType.IDA) {
                     n = setInitialHeuristic(n, st);
                 }
 
