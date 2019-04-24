@@ -62,7 +62,7 @@ SearchAlgorithms.bat inputFile searchMethod sleepTime
 
 The program is complete with a graphical representation of the search space, frontier and currently expanded nodes. For the simplest form of searches the UI appears as follows:
 
-![Completed-Breadth-First-Search](img/breadthFirstCompleted "Completed Breadth First Search")
+![Completed-Breadth-First-Search](img/breadthFirstCompleted.png "Completed Breadth First Search")
 
 - **Red**: Initial Agent Position
 - **Green**: Goal State
@@ -73,11 +73,11 @@ The program is complete with a graphical representation of the search space, fro
 
 The more complex the algorithm, the more data about each node is required and hence is displayed in the environment.
 
-![Completed-IDA*](img/idaStarCompleted "Completed IDA*")
+![Completed-IDA*](img/idaStarCompleted.png "Completed IDA*")
 
 Where cost to each node based on direction (middle) and Manhattan Distance to the nearest goal (top left) is displayed in each position.
 
-![Cell](img/cell "Cell")
+![Cell](img/cell.png "Cell")
 
 The UI is updated in real time however on the same thread as the computation thread so in rare cases will slow down performance of the algorithm itself, this is noticable with IDA* on slower machines.
 
