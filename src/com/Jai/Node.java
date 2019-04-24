@@ -12,13 +12,13 @@ public class Node {
     private boolean _searched;
     private boolean _isFrontier;
     private boolean _isCurrent;
-    private int _pathScore;
+    private int _pathCost;
 
     public Node(State state) {
         _state = state;
         _parent = null;
         _action = Direction.NONE;
-        _pathScore = 0;
+        _pathCost = 0;
     }
 
     public ArrayList<Direction> get_path() {
@@ -119,32 +119,33 @@ public class Node {
         this._action = _action;
     }
 
-    public void set_pathCost(int pathCost) {
-        _state.set_pathCost(pathCost);
+    public void set_pathHeuristic(int pathHeuristic) {
+        _state.set_pathHeuristic(pathHeuristic);
     }
 
-    public void set_pathCost(ArrayList<Node> goals) {
-        set_pathCost(ManhattanDistanceToNearestGoal(goals));
+    public void set_pathHeuristic(ArrayList<Node> goals) {
+        set_pathHeuristic(ManhattanDistanceToNearestGoal(goals));
+    }
+
+    public int get_pathHeuristic() {
+        return _state.get_pathHeuristic();
     }
 
     public int get_pathCost() {
-        return _state.get_pathCost();
+        return _pathCost;
     }
 
-    public int get_pathScore() {
-        return _pathScore;
+    public void set_PathCost(int[] stepcosts, int i) {
+        _pathCost = stepcosts[i];
     }
 
-    public void set_PathScore(int[] stepcosts, int i) {
-        _pathScore = stepcosts[i];
+    public void set_PathCost(int pathCost) {
+        _pathCost = pathCost;
     }
 
-    public void set_PathScore(int pathScore) {
-        _pathScore = pathScore;
-    }
-
-    public void incrementPathScore(int[] stepcosts, int i) {
-        _pathScore += stepcosts[i];
+    public void incrementPathCost(int[] stepcosts, int i) {
+        // Add to the cost to allow different weighted decisions
+        _pathCost += stepcosts[i];
     }
 
     public boolean is_isCurrent() {
@@ -156,11 +157,6 @@ public class Node {
     }
 
     public int get_totalPathScore() {
-        int result;
-
-        result = get_pathCost() + get_pathScore();
-
-
-        return result;
+        return get_pathCost() + get_pathHeuristic();
     }
 }

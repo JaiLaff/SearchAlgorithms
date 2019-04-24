@@ -90,6 +90,14 @@ public class Environment {
 
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("\n\nError Reading File");
+            System.out.println("File Input Format:");
+            System.out.println("\t1. Map Size: [x,y]");
+            System.out.println("\t2. Initial Agent Location: (x,y)");
+            System.out.println("\t3. Directional Movement Costs: (up,left,down,right)");
+            System.out.println("\t4. Goal State(s): (x1,y1)|(x2,y2)..|(xn,yn)");
+            System.out.println("\t5 onwards. Walls (Initial x,y TOP LEFT of wall): (x,y,width,height)\n\n");
+
         }
     }
 
@@ -140,7 +148,7 @@ public class Environment {
     }
 
     private Node setInitialHeuristic(Node n, SearchType st) {
-        n.set_pathCost(_goals);
+        n.set_pathHeuristic(_goals);
 
         return n;
     }

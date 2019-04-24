@@ -27,11 +27,11 @@ public class ViewPanel extends JPanel {
                 Font myFont = new Font("Helvetica", 1, 10);
                 g.setFont(myFont);
 
-                int pathCost = nodes[x / squareLength][y / squareLength].get_pathCost();
-                int pathScore = nodes[x / squareLength][y / squareLength].get_pathScore();
+                int pathHeuristic = nodes[x / squareLength][y / squareLength].get_pathHeuristic();
+                int pathScore = nodes[x / squareLength][y / squareLength].get_pathCost();
 
-                if (pathCost != 0) {
-                    g.drawString(String.valueOf(pathCost), x + (squareLength / 4), y + (squareLength / 3));
+                if (pathHeuristic != 0) {
+                    g.drawString(String.valueOf(pathHeuristic), x + (squareLength / 4), y + (squareLength / 3));
                 }
 
                 if (pathScore != 0) {

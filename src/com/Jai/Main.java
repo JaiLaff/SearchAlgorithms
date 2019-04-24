@@ -9,7 +9,7 @@ public class Main {
 
         if (args.length < 2) {
             System.out.println("ERROR: incorrect number of arguments");
-            System.out.println("USAGE: SearchAlgorithms.jar filename search-type time-between-steps(Milliseconds)");
+            System.out.println("USAGE: SearchAlgorithms.jar inputFile searchMethod sleepTime(ms)");
             return;
         }
 
@@ -73,7 +73,7 @@ public class Main {
                 env.AddPath(soln);
                 env.vc.update(env.get_nodes());
 
-                System.out.print(String.format(" %d\n", soln.expandedNodes));
+                System.out.print(String.format(" %d %dms\n", soln.expandedNodes, soln.elapsedTime/1000000));
 
 
                 System.out.println(soln.path);
@@ -82,7 +82,7 @@ public class Main {
                 System.out.print(" No Solution Found\n");
 
             } else {
-                System.out.println("\nUncaught Error");
+                System.out.println("\nUncaught Critical Error");
 
             }
         } catch (Exception e) {

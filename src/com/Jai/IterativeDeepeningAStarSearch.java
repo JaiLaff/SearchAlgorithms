@@ -13,7 +13,7 @@ public class IterativeDeepeningAStarSearch extends Search {
         this.sleepTime = sleepTime;
 
         Node root = _frontier.peekFirst();
-        int threshold = root.get_pathCost();
+        int threshold = root.get_pathHeuristic();
 
         IDAResult temp = new IDAResult(0, root, false);
 
@@ -42,10 +42,9 @@ public class IterativeDeepeningAStarSearch extends Search {
     public IDAResult Search(int g, int threshold) {
         Node node = _frontier.peekLast();
 
-        int f = g + node.get_pathCost();
+        int f = g + node.get_pathHeuristic();
 
-        node.set_searched(true);
-        node.set_PathScore(f);
+        node.set_PathCost(f);
 
         if (f > threshold) {
             return new IDAResult(f, node, false);

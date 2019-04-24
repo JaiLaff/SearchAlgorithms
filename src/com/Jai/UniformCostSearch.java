@@ -13,7 +13,7 @@ public class UniformCostSearch extends Search {
         for (int i = 0; i < _frontier.size() - 1; i++) {
 
 
-            if (n.get_pathScore() <= _frontier.get(i).get_pathScore()) {
+            if (n.get_pathCost() <= _frontier.get(i).get_pathCost()) {
                 _frontier.add(i, n);
                 return;
             }
@@ -35,7 +35,7 @@ public class UniformCostSearch extends Search {
                 _currentEdge.set_action(_defaultOrder[i]);
 
                 //Gives direction (i) in order to figure out step costs;
-                _currentEdge.set_PathScore(_stepCosts, i);
+                _currentEdge.set_PathCost(_stepCosts, i);
 
                 insertNodeToFrontier(_currentEdge);
 

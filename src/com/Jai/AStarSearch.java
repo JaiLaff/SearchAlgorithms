@@ -11,13 +11,16 @@ public class AStarSearch extends Search {
 
         for (int i = 0; i < _frontier.size() - 1; i++) {
 
+            int ftotalScore = _frontier.get(i).get_totalPathScore();
+            int ntotalScore = n.get_totalPathScore();
 
-            if (n.get_totalPathScore() < _frontier.get(i).get_totalPathScore()) {
+
+            if (ntotalScore < ftotalScore) {
                 _frontier.add(i, n);
                 return;
             }
 
-            if (n.get_totalPathScore() == _frontier.get(i).get_totalPathScore()) {
+            if (ntotalScore == ftotalScore) {
                 int j = i;
 
                 do {
@@ -28,7 +31,7 @@ public class AStarSearch extends Search {
 
                     j++;
 
-                } while (n.get_totalPathScore() == _frontier.get(j).get_totalPathScore() && j <= _frontier.size());
+                } while (ntotalScore == _frontier.get(j).get_totalPathScore() && j <= _frontier.size());
 
                 _frontier.add(n);
                 return;
@@ -49,7 +52,7 @@ public class AStarSearch extends Search {
 
                 _currentEdge.set_action(_defaultOrder[i]);
                 //Gives direction (i) in order to figure out step costs;
-                _currentEdge.incrementPathScore(_stepCosts, i);
+                _currentEdge.incrementPathCost(_stepCosts, i);
 
                 insertNodeToFrontier(_currentEdge);
 
