@@ -1,8 +1,5 @@
 package com.Jai;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 public class Agent {
 
     private int _initialX;
@@ -12,7 +9,7 @@ public class Agent {
     ViewController viewController;
     private int[] _stepcosts;
 
-    public Agent(int x, int y, SearchType st, int[] stepcosts){
+    public Agent(int x, int y, SearchType st, int[] stepcosts) {
         _initialX = x;
         _initialY = y;
         _searchType = st;
@@ -21,14 +18,14 @@ public class Agent {
     }
 
     public Agent(int x, int y, SearchType st) {
-        this(x,y, st, new int[]{1,1,1,1});
+        this(x, y, st, new int[]{1, 1, 1, 1});
     }
 
     public Solution Search(int sleepTime) {
 
         Search search;
 
-        switch(_searchType){
+        switch (_searchType) {
             case DEPTH:
                 search = new DepthFirstSearch(_nodes[_initialX][_initialY], _nodes, this, _stepcosts);
                 break;
@@ -70,7 +67,7 @@ public class Agent {
                 soln.error = true;
                 return soln;
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             soln.error = true;
             return soln;
         }
@@ -92,7 +89,7 @@ public class Agent {
         return _initialY;
     }
 
-    public void set_nodes(Node[][] nodes){
+    public void set_nodes(Node[][] nodes) {
         _nodes = nodes;
     }
 

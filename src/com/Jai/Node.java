@@ -25,7 +25,7 @@ public class Node {
         Node n = this;
         ArrayList<Direction> path = new ArrayList<>();
 
-        while (n != null){
+        while (n != null) {
 
             path.add(n._action);
 
@@ -33,7 +33,7 @@ public class Node {
 
         }
 
-        path.remove(path.size() -1);
+        path.remove(path.size() - 1);
 
         Collections.reverse(path);
         return path;
@@ -53,7 +53,7 @@ public class Node {
         int result = Integer.MAX_VALUE;
 
         // Using manhattan distance to find distance to CLOSEST GOAL
-        for (Node goal : goals){
+        for (Node goal : goals) {
             int dist = ManhattanDistanceToNode(goal);
             if (dist < result) {
                 result = dist;
@@ -79,7 +79,7 @@ public class Node {
         return _state.get_y();
     }
 
-    public void set_squareType(SquareType st){
+    public void set_squareType(SquareType st) {
         _state.set_squareType(st);
     }
 
@@ -123,19 +123,29 @@ public class Node {
         _state.set_pathCost(pathCost);
     }
 
-    public void set_pathCost( ArrayList<Node> goals) {set_pathCost(ManhattanDistanceToNearestGoal(goals));}
+    public void set_pathCost(ArrayList<Node> goals) {
+        set_pathCost(ManhattanDistanceToNearestGoal(goals));
+    }
 
     public int get_pathCost() {
         return _state.get_pathCost();
     }
 
-    public int get_pathScore() { return _pathScore;}
+    public int get_pathScore() {
+        return _pathScore;
+    }
 
-    public void set_PathScore(int[] stepcosts, int i) {_pathScore = stepcosts[i];}
+    public void set_PathScore(int[] stepcosts, int i) {
+        _pathScore = stepcosts[i];
+    }
 
-    public void set_PathScore(int pathScore) {_pathScore = pathScore;}
+    public void set_PathScore(int pathScore) {
+        _pathScore = pathScore;
+    }
 
-    public void incrementPathScore(int[] stepcosts, int i) {_pathScore += stepcosts[i];}
+    public void incrementPathScore(int[] stepcosts, int i) {
+        _pathScore += stepcosts[i];
+    }
 
     public boolean is_isCurrent() {
         return _isCurrent;

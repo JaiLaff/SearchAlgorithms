@@ -17,11 +17,11 @@ public class IterativeDeepeningAStarSearch extends Search {
 
         IDAResult temp = new IDAResult(0, root, false);
 
-        while(true) {
+        while (true) {
 
             temp.node.set_isCurrent(false);
 
-            temp = Search(0,threshold);
+            temp = Search(0, threshold);
 
             temp.node.set_isCurrent(true);
 
@@ -34,7 +34,7 @@ public class IterativeDeepeningAStarSearch extends Search {
                 return null;
             }
 
-             threshold = temp.fValue;
+            threshold = temp.fValue;
 
         }
     }
@@ -57,7 +57,6 @@ public class IterativeDeepeningAStarSearch extends Search {
         IDAResult min = new IDAResult(Integer.MAX_VALUE, null, false);
 
 
-
         for (int i = 0; i < node.get_edges().length; i++) {
 
 
@@ -65,7 +64,7 @@ public class IterativeDeepeningAStarSearch extends Search {
 
             if (n != null && !_frontier.contains(n)) {
 
-                _searchedNodes ++;
+                _searchedNodes++;
 
                 n.set_frontier(true);
 
@@ -81,7 +80,7 @@ public class IterativeDeepeningAStarSearch extends Search {
 
                 updateUI();
 
-                IDAResult temp = Search( g + _stepCosts[i], threshold);
+                IDAResult temp = Search(g + _stepCosts[i], threshold);
 
                 if (temp.found) {
                     return temp;
@@ -122,8 +121,8 @@ public class IterativeDeepeningAStarSearch extends Search {
     }
 
     public void reconstructPath() {
-        for (int i = _frontier.size() -1; i > 0; i --) {
-            _frontier.get(i).set_parent(_frontier.get(i-1));
+        for (int i = _frontier.size() - 1; i > 0; i--) {
+            _frontier.get(i).set_parent(_frontier.get(i - 1));
         }
     }
 }

@@ -4,13 +4,12 @@ public class AStarSearch extends Search {
 
 
     public AStarSearch(Node root, Node[][] nodes, Agent agent, int[] stepCosts) {
-        super(root, nodes, agent,stepCosts);
+        super(root, nodes, agent, stepCosts);
     }
 
     public void insertNodeToFrontier(Node n) {
 
-        for( int i = 0; i < _frontier.size() -1; i++) {
-
+        for (int i = 0; i < _frontier.size() - 1; i++) {
 
 
             if (n.get_totalPathScore() < _frontier.get(i).get_totalPathScore()) {
@@ -22,14 +21,14 @@ public class AStarSearch extends Search {
                 int j = i;
 
                 do {
-                    if (n.get_action().ordinal() < _frontier.get(j+1).get_action().ordinal()) {
-                        _frontier.add(j+1, n);
+                    if (n.get_action().ordinal() < _frontier.get(j + 1).get_action().ordinal()) {
+                        _frontier.add(j + 1, n);
                         return;
                     }
 
                     j++;
 
-                }while (n.get_totalPathScore() == _frontier.get(j).get_totalPathScore() && j <= _frontier.size());
+                } while (n.get_totalPathScore() == _frontier.get(j).get_totalPathScore() && j <= _frontier.size());
 
                 _frontier.add(n);
                 return;

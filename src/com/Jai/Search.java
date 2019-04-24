@@ -31,10 +31,9 @@ public abstract class Search {
     }
 
 
-
     public Node BeginSearch(int sleepTime) {
 
-        while(!_frontier.isEmpty()){
+        while (!_frontier.isEmpty()) {
             _current = _frontier.pollFirst();
             _current.set_searched(true);
             _current.set_frontier(false);
@@ -66,9 +65,9 @@ public abstract class Search {
         return null;
     }
 
-    public void updateFrontier(){
+    public void updateFrontier() {
         for (Node n : _frontier) {
-           n.set_frontier(true);
+            n.set_frontier(true);
         }
     }
 

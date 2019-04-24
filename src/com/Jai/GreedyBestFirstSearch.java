@@ -4,13 +4,13 @@ public class GreedyBestFirstSearch extends Search {
 
 
     public GreedyBestFirstSearch(Node root, Node[][] nodes, Agent agent, int[] stepcosts) {
-        super(root, nodes, agent, stepcosts );
+        super(root, nodes, agent, stepcosts);
     }
 
 
     public void insertNodeToFrontier(Node n) {
 
-        for( int i = 0; i < _frontier.size(); i++) {
+        for (int i = 0; i < _frontier.size(); i++) {
 
             if (n.get_pathCost() < _frontier.get(i).get_pathCost()) {
                 _frontier.add(i, n);

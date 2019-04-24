@@ -2,7 +2,7 @@ package com.Jai;
 
 public class DepthFirstSearch extends Search {
 
-    public DepthFirstSearch(Node root, Node[][]nodes, Agent agent, int[] stepcosts) {
+    public DepthFirstSearch(Node root, Node[][] nodes, Agent agent, int[] stepcosts) {
         super(root, nodes, agent, stepcosts);
     }
 

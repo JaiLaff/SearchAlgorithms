@@ -10,8 +10,7 @@ public class UniformCostSearch extends Search {
 
         // Similar to A*
         // No Heuristic
-        for( int i = 0; i < _frontier.size() -1; i++) {
-
+        for (int i = 0; i < _frontier.size() - 1; i++) {
 
 
             if (n.get_pathScore() <= _frontier.get(i).get_pathScore()) {

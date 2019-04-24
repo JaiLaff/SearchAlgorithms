@@ -1,5 +1,5 @@
 package com.Jai;
 
 public enum Direction {
-    UP,LEFT,DOWN,RIGHT,NONE
+    UP, LEFT, DOWN, RIGHT, NONE
 }

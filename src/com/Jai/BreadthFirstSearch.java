@@ -10,7 +10,7 @@ public class BreadthFirstSearch extends Search {
     @Override
     public void addEdgesToFrontier(Node[] edges) {
         // Edges default to standard order
-        for (int i = 0; i < _currentEdges.length ; i++) {
+        for (int i = 0; i < _currentEdges.length; i++) {
             _currentEdge = edges[i];
 
             if (_currentEdge != null && !_currentEdge.is_searched()) {

@@ -1,7 +1,8 @@
 package com.Jai;
+
 import javax.swing.*;
 
-public class ViewController{
+public class ViewController {
 
     private JFrame f;
     private ViewPanel p;
@@ -10,10 +11,10 @@ public class ViewController{
     private int squareLength;
     private String title;
 
-    public ViewController(int squareLength, Node[][] nodes, SearchType st){
+    public ViewController(int squareLength, Node[][] nodes, SearchType st) {
 
         this.width = (squareLength * nodes.length);
-        this.height = (squareLength * nodes[0].length) + squareLength/2; //Height bug
+        this.height = (squareLength * nodes[0].length) + squareLength / 2; //Height bug
         this.squareLength = squareLength;
 
         title = "Search Algorithms - " + st.get_longSearchType();
