@@ -70,6 +70,7 @@ The program is complete with a graphical representation of the search space, fro
 - **Light Grey**: Searched Position
 - **Magenta**: Current Position
 - **Cyan**: Current Frontier
+- **Yellow**: Path
 
 The more complex the algorithm, the more data about each node is required and hence is displayed in the environment.
 
