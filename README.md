@@ -16,6 +16,13 @@ The available search methods are:
 
 These instructions will get you up and running on your local machine.
 
+### Obtaining Latest Build
+
+The latest build can be found at:
+```/out/artifacts/SearchAlgorithms_jar/SearchAlgorithms.jar```
+
+as well as some input files to start with.
+
 ### Arguments
 
 - **inputFile**: Path to input file relative to SearchAlgorithms.jar. Must be .txt in the following format:
@@ -46,13 +53,13 @@ These instructions will get you up and running on your local machine.
 
 ### Usage
 
-OS X & Linux:
+**OS X & Linux**:
 
 ```
 java -jar SearchAlgorithms.jar inputFile searchMethod sleepTime
 ```
 
-Windows:
+**Windows**:
 
 ```
 SearchAlgorithms.bat inputFile searchMethod sleepTime
