@@ -7,6 +7,8 @@ public class DepthFirstSearch extends Search {
     }
 
     public void addEdgesToFrontier(Node[] n) {
+        //Add nodes in reverse order to breadth-first
+        //Most recently expanded node inserted at the beginning of the frontier
         for (int i = _defaultOrder.length - 1; i >= 0; i--) {
             _currentEdge = _currentEdges[i];
 

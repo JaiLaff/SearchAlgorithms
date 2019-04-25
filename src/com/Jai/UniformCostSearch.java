@@ -9,7 +9,7 @@ public class UniformCostSearch extends Search {
     public void insertNodeToFrontier(Node n) {
 
         // Similar to A*
-        // No Heuristic
+        // but no Heuristic
         for (int i = 0; i < _frontier.size() - 1; i++) {
 
 

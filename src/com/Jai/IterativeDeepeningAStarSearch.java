@@ -40,6 +40,8 @@ public class IterativeDeepeningAStarSearch extends Search {
     }
 
     public IDAResult Search(int g, int threshold) {
+        //Find path to the node with a lower f cost than the threshold.
+        //Using the frontier as a stack containing the currently expanded path.
         Node node = _frontier.peekLast();
 
         int f = g + node.get_pathHeuristic();
@@ -79,12 +81,14 @@ public class IterativeDeepeningAStarSearch extends Search {
 
                 updateUI();
 
+                //Search every node's children etc...
                 IDAResult temp = Search(g + _stepCosts[i], threshold);
 
                 if (temp.found) {
                     return temp;
                 }
 
+                //new best path found
                 if (temp.fValue < min.fValue) {
                     min = temp;
                 }

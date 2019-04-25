@@ -33,6 +33,10 @@ public abstract class Search {
 
     public Node BeginSearch(int sleepTime) {
 
+        //For basic iterative searches the actual search is the same.
+        //Using a base search function allows us to customise the
+        //addition of nodes to the frontier to change the method of searching.
+
         while (!_frontier.isEmpty()) {
             _current = _frontier.pollFirst();
             _current.set_searched(true);
@@ -71,6 +75,7 @@ public abstract class Search {
         }
     }
 
+    // Function that changes how the search traversed the frontier
     public abstract void addEdgesToFrontier(Node[] edges);
 
 }

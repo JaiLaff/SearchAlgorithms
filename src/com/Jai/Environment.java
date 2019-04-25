@@ -16,7 +16,7 @@ public class Environment {
 
     public Environment(String filename, SearchType st) {
 
-        // Constructor reads file - could probably put in another method
+        // Constructor reads file
         try {
             String thisLine = "";
             int lineNumber = 1;
@@ -29,13 +29,16 @@ public class Environment {
 
                 switch (lineNumber) {
                     case 1:
+                        // Environment Dimensions
                         Init(Integer.parseInt(vals[1]), Integer.parseInt(vals[0]));
                         break;
                     case 2:
+                        // Agent initial x,y
                         _initialX = Integer.parseInt(vals[0]);
                         _initialY = Integer.parseInt(vals[1]);
                         break;
                     case 3:
+                        // Costs for each step (up,left,down,right)
                         int[] stepCostArr = new int[4];
                         for (int i = 0; i < vals.length; i++) {
                             stepCostArr[i] = Integer.parseInt(vals[i]);
@@ -43,6 +46,7 @@ public class Environment {
                         _agent = new Agent(_initialX, _initialY, st, stepCostArr);
                         break;
                     case 4:
+                        // Goals
                         String[] goals = newStr.split("[|]");
 
                         for (int i = 0; i < goals.length; i++) {
@@ -76,6 +80,8 @@ public class Environment {
 
             _agent.set_nodes(_grid);
 
+
+            // Scales the UI should the environment be large
             int sqLen = 50;
 
             if (_grid.length >= 20) {

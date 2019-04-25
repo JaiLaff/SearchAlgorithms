@@ -30,6 +30,7 @@ public class ViewPanel extends JPanel {
                 int pathHeuristic = nodes[x / squareLength][y / squareLength].get_pathHeuristic();
                 int pathScore = nodes[x / squareLength][y / squareLength].get_pathCost();
 
+                //only draw if exist
                 if (pathHeuristic != 0) {
                     g.drawString(String.valueOf(pathHeuristic), x + (squareLength / 4), y + (squareLength / 3));
                 }

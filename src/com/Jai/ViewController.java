@@ -14,7 +14,8 @@ public class ViewController {
     public ViewController(int squareLength, Node[][] nodes, SearchType st) {
 
         this.width = (squareLength * nodes.length);
-        this.height = (squareLength * nodes[0].length) + squareLength / 2; //Height bug
+        //Without the half squarelength, controller was too short for the grid
+        this.height = (squareLength * nodes[0].length) + squareLength / 2;
         this.squareLength = squareLength;
 
         title = "Search Algorithms - " + st.get_longSearchType();
@@ -31,6 +32,7 @@ public class ViewController {
     }
 
     public void update(Node[][] nodes) {
+        //Recreate panel each time
         f.remove(p);
         p = new ViewPanel(nodes, this.squareLength);
         f.add(p);

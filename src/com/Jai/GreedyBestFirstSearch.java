@@ -10,6 +10,8 @@ public class GreedyBestFirstSearch extends Search {
 
     public void insertNodeToFrontier(Node n) {
 
+        // Insertion based on pathcost
+
         for (int i = 0; i < _frontier.size(); i++) {
 
             if (n.get_pathCost() < _frontier.get(i).get_pathCost()) {
@@ -17,6 +19,7 @@ public class GreedyBestFirstSearch extends Search {
                 return;
             }
 
+            // Should pathcosts equal, use default order to prioritise
             if (n.get_pathCost() == _frontier.get(i).get_pathCost()) {
                 if (n.get_action().ordinal() < _frontier.get(i).get_action().ordinal()) {
                     _frontier.add(i, n);

@@ -82,6 +82,7 @@ public class Main {
                 System.out.print(" No Solution Found\n");
 
             } else {
+                // Usually when solution returns null
                 System.out.println("\nUncaught Critical Error");
 
             }
