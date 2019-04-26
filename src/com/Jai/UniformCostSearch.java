@@ -13,14 +13,23 @@ public class UniformCostSearch extends Search {
         for (int i = 0; i < _frontier.size() - 1; i++) {
 
 
-            if (n.get_pathCost() <= _frontier.get(i).get_pathCost()) {
+            if (n.get_pathCost() < _frontier.get(i).get_pathCost()) {
                 _frontier.add(i, n);
                 return;
+            }
+
+            if (n.get_pathCost() == _frontier.get(i).get_pathCost()) {
+                if (n.get_action().ordinal() < _frontier.get(i).get_action().ordinal()) {
+                    _frontier.add(i, n);
+                    return;
+                }
             }
         }
 
         _frontier.add(n);
     }
+
+
 
     @Override
     public void addEdgesToFrontier(Node[] edges) {

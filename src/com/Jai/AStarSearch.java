@@ -21,20 +21,10 @@ public class AStarSearch extends Search {
             }
 
             if (ntotalScore == ftotalScore) {
-                int j = i;
-
-                do {
-                    if (n.get_action().ordinal() < _frontier.get(j + 1).get_action().ordinal()) {
-                        _frontier.add(j + 1, n);
-                        return;
-                    }
-
-                    j++;
-
-                } while (ntotalScore == _frontier.get(j).get_totalPathScore() && j <= _frontier.size());
-
-                _frontier.add(n);
-                return;
+                if (n.get_action().ordinal() < _frontier.get(i).get_action().ordinal()) {
+                    _frontier.add(i, n);
+                    return;
+                }
             }
         }
 

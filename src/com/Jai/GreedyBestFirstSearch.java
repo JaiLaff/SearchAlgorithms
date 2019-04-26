@@ -10,22 +10,19 @@ public class GreedyBestFirstSearch extends Search {
 
     public void insertNodeToFrontier(Node n) {
 
-        // Insertion based on pathcost
+        // Insertion based on heuristic values
 
-        for (int i = 0; i < _frontier.size(); i++) {
+        for (int i = 0; i < _frontier.size()-1; i++) {
 
-            if (n.get_pathCost() < _frontier.get(i).get_pathCost()) {
+            if (n.get_pathHeuristic() <= _frontier.get(i).get_pathHeuristic()) {
                 _frontier.add(i, n);
                 return;
             }
 
-            // Should pathcosts equal, use default order to prioritise
-            if (n.get_pathCost() == _frontier.get(i).get_pathCost()) {
+            // Should heuristics equal, use default order to prioritise
+            if (n.get_pathHeuristic() == _frontier.get(i).get_pathHeuristic()) {
                 if (n.get_action().ordinal() < _frontier.get(i).get_action().ordinal()) {
                     _frontier.add(i, n);
-                    return;
-                } else {
-                    _frontier.add(i + 1, n);
                     return;
                 }
             }

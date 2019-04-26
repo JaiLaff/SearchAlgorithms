@@ -105,6 +105,12 @@ public class IterativeDeepeningAStarSearch extends Search {
         return min;
     }
 
+    public void reconstructPath() {
+        for (int i = _frontier.size() - 1; i > 0; i--) {
+            _frontier.get(i).set_parent(_frontier.get(i - 1));
+        }
+    }
+
 
     @Override
     public void addEdgesToFrontier(Node[] edges) {
@@ -123,9 +129,5 @@ public class IterativeDeepeningAStarSearch extends Search {
         }
     }
 
-    public void reconstructPath() {
-        for (int i = _frontier.size() - 1; i > 0; i--) {
-            _frontier.get(i).set_parent(_frontier.get(i - 1));
-        }
-    }
+
 }
