@@ -62,7 +62,7 @@ java -jar SearchAlgorithms.jar inputFile searchMethod sleepTime
 **Windows**:
 
 ```
-SearchAlgorithms.bat inputFile searchMethod sleepTime
+SearchAlgorithms inputFile searchMethod sleepTime
 ```
 
 ### Output
