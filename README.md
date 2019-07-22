@@ -23,6 +23,10 @@ The latest build can be found at:
 
 as well as some input files to start with.
 
+#### Current Bugs
+
+- 0 Step solutions currently not recognised
+
 ### Arguments
 
 - **inputFile**: Path to input file relative to SearchAlgorithms.jar. Must be .txt in the following format:
